@@ -20,17 +20,24 @@
   <link href="css/index.css" rel="stylesheet">
 </head>
 
-<body class="text-center">
-  <form class="form-signin">
-    <img class="mb-4" src="img/index_logo.png" alt="" width="100%" height="100%">
-    <label for="">Enter your name</label>
-    <input type="text" name="name" placeholder="">
-    <label for="">Enter your email</label>
-    <input type="email" name="email" placeholder="">
+<body style="display: block">
+  <div class="text-center">
+    <img class="" src="img/index_logo.png" alt="" width="50%" height="50%">
+  </div>
+  <div class="text-center">
+    <form class="form-signin">
+      <!-- banner section -->
+      <div class="alert alert-danger" style="display: none; margin-top: 10px"></div>
+      <!-- //////////////////////// -->
+      <label for="">Enter your name</label>
+      <input type="text" name="name" placeholder="">
+      <label for="">Enter your email</label>
+      <input type="email" name="email" placeholder="">
 
-    <button class="btn btn-primary form-control sign_up_btn" type="submit" name="button">Sign Up</button>
+      <button class="btn btn-primary form-control sign_up_btn" type="submit" name="button" style="margin-top: 10px">Sign Up</button>
 
-  </form>
+    </form>
+  </div>
 </body>
 </html>
 
@@ -48,6 +55,14 @@ $(".form-signin").submit(function(e){
     "data" : form_data,
     success: function (json) {
       console.log(json);
+      var json_data = JSON.parse(json);
+      var msg = json_data['msg'];
+      var type = json_data['type'];
+      if(type == "fail"){
+        $(".alert-danger").html(msg).show(500);
+      }else if(type == "success"){
+        window.location.href = "index.php";
+      }
     }
   });
 });

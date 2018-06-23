@@ -6,9 +6,7 @@ body {
 body {
   display: -ms-flexbox;
   display: -webkit-box;
-  display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
+  display: block;
   -webkit-box-align: center;
   align-items: center;
   -webkit-box-pack: center;
@@ -24,9 +22,7 @@ body {
   padding: 15px;
   margin: 0 auto;
 }
-.form-signin .checkbox {
-  font-weight: 400;
-}
+
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
@@ -36,4 +32,8 @@ body {
 }
 .form-signin .sign_in_btn{
   margin-top: 10px;
+}
+
+.text-center{
+  text-align: center;
 }

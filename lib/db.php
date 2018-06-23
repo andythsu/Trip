@@ -6,30 +6,40 @@
 class DB
 {
 
-  private $connection;
+  public static $connection;
 
   function __construct()
   {
-    $this->init();
+    self::init();
   }
 
-  public function init()
+  public static function init()
   {
     include 'config.php';
     extract($config);
-    $this->connection = mysqli_connect($hostname, $database_user, $database_password, $database_name);
+    self::$connection = mysqli_connect($hostname, $database_user, $database_password, $database_name);
     if (mysqli_connect_error()) {
       die(mysqli_connect_error());
     }
   }
-  public function query($sql)
+  public static function getCon()
   {
-    if (!$result = mysqli_query($this->connection, $sql)) {
-      die(mysqli_error($this->connection));
+    if(self::$connection !== null) {
+      return self::$connection;
+    }else{
+      self::init();
+      return self::$connection;
+    }
+  }
+  public static function query($sql)
+  {
+    if (!$result = mysqli_query(self::$connection, $sql)) {
+      die(mysqli_error(self::$connection));
       return false;
     }
     return $result;
   }
+
 }
 
 
