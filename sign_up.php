@@ -54,7 +54,6 @@ $(".form-signin").submit(function(e){
     "type" : 'post',
     "data" : form_data,
     success: function (json) {
-      console.log(json);
       var json_data = JSON.parse(json);
       var msg = json_data['msg'];
       var type = json_data['type'];
