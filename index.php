@@ -27,16 +27,13 @@
       <h1 class="h3 mb-3 font-weight-normal">Please sign in with your user name listed below</h1>
       <select class="form-control" name="user_id">
         <?php
-        include 'lib/db.php';
-        $db = new db();
-        $sql = "SELECT * FROM user";
-        $result = $db->query($sql);
-        if($result){
-          while($row = mysqli_fetch_assoc($result)){
-            ?>
-            <option value="<?php echo $row['user_id'] ?>"><?php echo $row['user_name'] ?></option>
-            <?php
-          }
+        include 'lib/User.class.php';
+        $result = User::selectAll();
+        while($row = $result->fetch()){
+          ?>
+          <option value="<?php echo $row['user_id'] ?>"><?php echo $row['user_name'] ?></option>
+          <?php
+
         }
         ?>
       </select>

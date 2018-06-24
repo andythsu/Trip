@@ -1,14 +1,9 @@
 <?php
-include 'lib/db.php';
-include 'lib/util.php';
+include 'lib/User.class.php';
 $user_id = $_POST['user_id'];
-$con = DB::getCon();
-$stmt = $con->prepare("SELECT u.user_name, u.user_email FROM User u WHERE u.user_id = ?");
-$stmt->bind_param("s", $user_id);
-$stmt->execute();
-$stmt->bind_result($user_name, $user_email);
-$stmt->fetch();
-$stmt->close();
+$result = User::selectByID($user_id);
+$user_name = $result[0]['user_name'];
+$user_email = $result[0]['user_email'];
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +76,6 @@ $(".confirm_change_name_btn").on("click", function(){
   var new_name = $name_field.val();
   var form_data = {
     "name" : new_name,
-    "email" : null,
     "id" : <?php echo $user_id ?>
   };
   $.ajax({
@@ -106,7 +100,6 @@ $(".confirm_change_email_btn").on('click', function(){
   var $email_field = $(this).siblings("input");
   var new_email = $email_field.val();
   var form_data = {
-    "name" : null,
     "email" : new_email,
     "id" : <?php echo $user_id ?>
   };

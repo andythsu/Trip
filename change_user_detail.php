@@ -1,44 +1,29 @@
 <?php
-include 'lib/util.php';
-include 'lib/db.php';
-$name = $_POST['name'];
-$email = $_POST['email'];
+include 'lib/User.class.php';
+$name = array_key_exists('name', $_POST) ? $_POST['name'] : null;
+$email = array_key_exists('email', $_POST) ? $_POST['email'] : null;
 $id = $_POST['id'];
 
-$con = DB::getCon();
-
 // if user requests to change name
-if($name == "null"){
-  $sql = "SELECT user_name FROM User u WHERE u.user_name = '$name'";
-  $result = DB::query($sql);
-  $rowcount = mysqli_num_rows($result);
-  if($rowcount > 0){
+if($name !== null){
+  $result = User::checkNameExists($name);
+  if(!empty($result)){
     // there is record
     $rtn['msg'] = "User name has already been registered";
     $rtn['type'] = "fail";
   }else{
-    // update
-    $stmt = $con->prepare("Update User SET user_name = ? WHERE user_id = ?");
-    $stmt->bind_param("si", $name, $id);
-    if($stmt->execute()){
-      $stmt->close();
+    // update user name
+    if(User::updateName($name, $id)){
       $rtn['msg'] = "successfully updated";
       $rtn['type'] = "success";
-    }else{
-      echo "failed: " . $stmt->error;
     }
   }
 }else
 // if user requests to change email
 {
-  $stmt = $con->prepare("Update User SET user_email = ? WHERE user_id = ?");
-  $stmt->bind_param("si", $email, $id);
-  if($stmt->execute()){
-    $stmt->close();
+  if(User::updateEmail($email, $id)){
     $rtn['msg'] = "successfully updated";
     $rtn['type'] = "success";
-  }else{
-    echo "failed: " . $stmt->error;
   }
 }
 

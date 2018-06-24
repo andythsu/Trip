@@ -1,26 +1,27 @@
 <?php
-include 'lib/util.php';
-include 'lib/db.php';
+include 'lib/User.class.php';
 $name = $_POST['name'];
 $email = $_POST['email'];
 
-$con = DB::getCon();
-
-$sql = "SELECT user_name FROM User u WHERE u.user_name = '$name'";
-$result = DB::query($sql);
-$rowcount = mysqli_num_rows($result);
+$result = User::checkNameExists($name);
+$rowcount = $result->rowCount();
 if($rowcount > 0){
   // there is record
   $rtn['msg'] = "User name has already been registered";
   $rtn['type'] = "fail";
 }else{
   // insert
-  $stmt = $con->prepare("INSERT INTO User (user_name, user_email) VALUES (?,?)");
-  $stmt->bind_param("ss", $name, $email);
-  $stmt->execute();
-  $stmt->close();
-  $rtn['msg'] = "successfully registered";
-  $rtn['type'] = "success";
+  $data = array($name, $email);
+  $result = User::signUp($data);
+
+  if($result > 0){
+    $rtn['msg'] = "successfully registered";
+    $rtn['type'] = "success";
+  }else{
+    $rtn['msg'] = "error when inserting data";
+    $rtn['type'] = "fail";
+  }
+
 }
 
 echo json_encode($rtn);
