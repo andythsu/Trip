@@ -5,5 +5,4 @@ function output($msg)
   print_r($msg);
   print_r("</pre>");
 }
-
 ?>

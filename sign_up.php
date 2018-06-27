@@ -58,7 +58,7 @@ $(".form-signin").submit(function(e){
       var msg = json_data['msg'];
       var type = json_data['type'];
       if(type == "fail"){
-        $(".alert-danger").html(msg).show(500);
+        $(".alert-danger").html(msg).show(500).delay(2000).hide(500);
       }else if(type == "success"){
         window.location.href = "index.php";
       }

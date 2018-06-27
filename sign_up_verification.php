@@ -4,8 +4,7 @@ $name = $_POST['name'];
 $email = $_POST['email'];
 
 $result = User::checkNameExists($name);
-$rowcount = $result->rowCount();
-if($rowcount > 0){
+if(!empty($result)){
   // there is record
   $rtn['msg'] = "User name has already been registered";
   $rtn['type'] = "fail";

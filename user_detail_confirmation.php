@@ -17,7 +17,7 @@ $user_email = $result[0]['user_email'];
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link href="css/index.css" rel="stylesheet">
+  <link href="css/user_detail_confirmation.css" rel="stylesheet">
 
   <title>Welcome</title>
 
@@ -36,15 +36,15 @@ $user_email = $result[0]['user_email'];
     <h2 name="user_name">User name: <?php echo $user_name ?></h2>
     <div class="">
       <button class="btn btn-info change_name_btn" name="change_name">Change name</button>
-      <div class="change_name_div" style="display: inline">
+      <div class="change_name_div">
         <input type="text" name="change_name_field" value="">
         <button class="btn btn-success confirm_change_name_btn">Confirm</button>
       </div>
     </div>
     <h2 name="user_email">User email: <?php echo $user_email ?></h2>
     <button class="btn btn-info change_email_btn" name="change_email">Change email</button>
-    <div class="change_email_div" style="display: inline">
-      <input type="email" name="change_email_field" value="">
+    <div class="change_email_div">
+      <input type="email" name="change_email_field" value="" required>
       <button class="btn btn-success confirm_change_email_btn">Confirm</button>
     </div>
   </div>
@@ -56,11 +56,12 @@ $user_email = $result[0]['user_email'];
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="js/modal.js"></script>
 <script type="text/javascript">
 // hide the divs on start
 $(document).ready(function(){
-  $(".change_name_div").hide();
-  $(".change_email_div").hide();
+  $(".change_name_div").css("display", "none");
+  $(".change_email_div").css("display", "none");
 });
 
 $(".change_name_btn").on("click", function(){
@@ -74,6 +75,21 @@ $(".change_email_btn").on("click", function(){
 $(".confirm_change_name_btn").on("click", function(){
   var $name_field = $(this).siblings("input");
   var new_name = $name_field.val();
+  // check for empty name
+  if(!new_name.replace(/\s/g, '').length){
+    var modal_attr = {
+      "header" : {
+        "content" : "Warning!",
+        "color" : "red"
+      },
+      "body" : {
+        "content" : "Name cannot be empty"
+      }
+    };
+    var modal = getModal(modal_attr);
+    appendModal(modal);
+    return;
+  }
   var form_data = {
     "name" : new_name,
     "id" : <?php echo $user_id ?>
@@ -99,6 +115,21 @@ $(".confirm_change_name_btn").on("click", function(){
 $(".confirm_change_email_btn").on('click', function(){
   var $email_field = $(this).siblings("input");
   var new_email = $email_field.val();
+  // check for valid email
+  if(!validateEmail(new_email)){
+    var modal_attr = {
+      "header" : {
+        "content" : "Warning!",
+        "color" : "red"
+      },
+      "body" : {
+        "content" : "Please enter a valid email address"
+      }
+    };
+    var modal = getModal(modal_attr);
+    appendModal(modal);
+    return;
+  }
   var form_data = {
     "email" : new_email,
     "id" : <?php echo $user_id ?>
@@ -120,4 +151,10 @@ $(".confirm_change_email_btn").on('click', function(){
     }
   });
 });
+
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
 </script>

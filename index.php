@@ -33,7 +33,6 @@
           ?>
           <option value="<?php echo $row['user_id'] ?>"><?php echo $row['user_name'] ?></option>
           <?php
-
         }
         ?>
       </select>
