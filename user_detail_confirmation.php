@@ -61,6 +61,7 @@ $user_email = $result[0]['user_email'];
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="js/modal.js"></script>
+<script src="js/util.js"></script>
 <script type="text/javascript">
 // hide the divs on start
 $(document).ready(function(){
@@ -80,7 +81,7 @@ $(".confirm_change_name_btn").on("click", function(){
   var $name_field = $(this).siblings("input");
   var new_name = $name_field.val();
   // check for empty name
-  if(!new_name.replace(/\s/g, '').length){
+  if(!validateName(new_name)){
     var modal_attr = {
       "header" : {
         "content" : "Warning!",
@@ -155,10 +156,5 @@ $(".confirm_change_email_btn").on('click', function(){
     }
   });
 });
-
-function validateEmail(email) {
-  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(email);
-}
 
 </script>

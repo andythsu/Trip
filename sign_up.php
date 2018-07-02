@@ -45,6 +45,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="js/modal.js"></script>
+<script src="js/util.js"></script>
 <script type="text/javascript">
 $(".form-signin").submit(function(e){
   e.preventDefault();
@@ -52,7 +53,7 @@ $(".form-signin").submit(function(e){
   var form_data = getFormData(self);
   var name = form_data['name'];
   var email = form_data['email'];
-  if(!name.replace(/\s/g, '').length){
+  if(!validateName(name)){
     var modal_attr = {
       "header" : {
         "content" : "Warning!",
@@ -96,11 +97,6 @@ $(".form-signin").submit(function(e){
     }
   });
 });
-
-function validateEmail(email) {
-  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(email);
-}
 
 function getFormData(form) {
   var form_data = form.serializeArray();
