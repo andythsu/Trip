@@ -1,5 +1,5 @@
 <?php
-include 'lib/User.class.php';
+include '../lib/User.class.php';
 $name = array_key_exists('name', $_POST) ? $_POST['name'] : null;
 $email = array_key_exists('email', $_POST) ? $_POST['email'] : null;
 $id = $_POST['id'];

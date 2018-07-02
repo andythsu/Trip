@@ -17,7 +17,7 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="css/index.css" rel="stylesheet">
+  <link href="css/sign_in.css" rel="stylesheet">
 </head>
 
 <body style="display: block">
@@ -50,7 +50,7 @@ $(".form-signin").submit(function(e){
   var self = $(this);
   var form_data = getFormData(self);
   $.ajax({
-    "url" : 'sign_up_verification.php',
+    "url" : 'backend/sign_up_verification.php',
     "type" : 'post',
     "data" : form_data,
     success: function (json) {
@@ -60,7 +60,7 @@ $(".form-signin").submit(function(e){
       if(type == "fail"){
         $(".alert-danger").html(msg).show(500).delay(2000).hide(500);
       }else if(type == "success"){
-        window.location.href = "index.php";
+        window.location.href = "sign_in.php";
       }
     }
   });

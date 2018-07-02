@@ -10,6 +10,9 @@ $user_email = $result[0]['user_email'];
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -18,6 +21,7 @@ $user_email = $result[0]['user_email'];
 
   <!-- Custom styles for this template -->
   <link href="css/user_detail_confirmation.css" rel="stylesheet">
+  <link href="css/util.css" rel="stylesheet">
 
   <title>Welcome</title>
 
@@ -95,7 +99,7 @@ $(".confirm_change_name_btn").on("click", function(){
     "id" : <?php echo $user_id ?>
   };
   $.ajax({
-    "url" : "change_user_detail.php",
+    "url" : "backend/change_user_detail.php",
     "type" : "post",
     "data" : form_data,
     success : function(json){
@@ -135,7 +139,7 @@ $(".confirm_change_email_btn").on('click', function(){
     "id" : <?php echo $user_id ?>
   };
   $.ajax({
-    "url" : "change_user_detail.php",
+    "url" : "backend/change_user_detail.php",
     "type" : "post",
     "data" : form_data,
     success : function(json){

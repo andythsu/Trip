@@ -33,11 +33,3 @@ body {
 .form-signin .sign_in_btn{
   margin-top: 10px;
 }
-
-.change_email_div{
-  display: inline;
-}
-
-.change_name_div{
-  display: inline;
-}

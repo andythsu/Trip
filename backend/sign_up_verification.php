@@ -1,5 +1,5 @@
 <?php
-include 'lib/User.class.php';
+include '../lib/User.class.php';
 $name = $_POST['name'];
 $email = $_POST['email'];
 
