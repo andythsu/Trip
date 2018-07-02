@@ -44,11 +44,42 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="js/modal.js"></script>
 <script type="text/javascript">
 $(".form-signin").submit(function(e){
   e.preventDefault();
   var self = $(this);
   var form_data = getFormData(self);
+  var name = form_data['name'];
+  var email = form_data['email'];
+  if(!name.replace(/\s/g, '').length){
+    var modal_attr = {
+      "header" : {
+        "content" : "Warning!",
+        "color" : "red"
+      },
+      "body" : {
+        "content" : "Name cannot be empty"
+      }
+    };
+    var modal = getModal(modal_attr);
+    appendModal(modal);
+    return;
+  }
+  if(!validateEmail(email)){
+    var modal_attr = {
+      "header" : {
+        "content" : "Warning!",
+        "color" : "red"
+      },
+      "body" : {
+        "content" : "Please enter a valid email address"
+      }
+    };
+    var modal = getModal(modal_attr);
+    appendModal(modal);
+    return;
+  }
   $.ajax({
     "url" : 'backend/sign_up_verification.php',
     "type" : 'post',
@@ -65,6 +96,11 @@ $(".form-signin").submit(function(e){
     }
   });
 });
+
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
 
 function getFormData(form) {
   var form_data = form.serializeArray();
