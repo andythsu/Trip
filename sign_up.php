@@ -92,7 +92,7 @@ $(".form-signin").submit(function(e){
       if(type == "fail"){
         $(".alert-danger").html(msg).show(500).delay(2000).hide(500);
       }else if(type == "success"){
-        window.location.href = "sign_in.php";
+        window.location.href = "index.php";
       }
     }
   });

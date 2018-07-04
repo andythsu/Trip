@@ -53,7 +53,7 @@ $user_email = $result[0]['user_email'];
     </div>
   </div>
   <div class="text-center" style="margin-top: 20px">
-    <button class="btn btn-primary" name="button">Next</button>
+    <button class="btn btn-primary" name="button" onclick="window.location='route.php'">Next</button>
   </div>
 </body>
 </html>
