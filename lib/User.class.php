@@ -3,11 +3,13 @@ include 'DB.class.php';
 
 /**
 * user backend interface
+* Author: Andy Su
 */
+
 class User
 {
 
-  public static function selectByID($id)
+  public static function getByID($id)
   {
     $sql = "SELECT * FROM user u WHERE u.user_id = ?";
     $data = array($id);
@@ -15,7 +17,7 @@ class User
     return $result;
   }
 
-  public static function selectAll(){
+  public static function getAll(){
     $sql = "SELECT * FROM user";
     $result = DB::query($sql);
     return $result;

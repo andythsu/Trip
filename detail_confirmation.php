@@ -1,7 +1,7 @@
 <?php
 include 'lib/User.class.php';
 $user_id = $_POST['user_id'];
-$result = User::selectByID($user_id);
+$result = User::getByID($user_id);
 $user_name = $result[0]['user_name'];
 $user_email = $result[0]['user_email'];
 ?>

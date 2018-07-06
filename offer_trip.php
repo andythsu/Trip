@@ -17,21 +17,60 @@
     <div class="form-group">
       <label for="">Select your car</label>
       <select class="form-control" name="">
-        <option value="">dummy</option>
+        <?php
+        include 'lib/Car.class.php';
+        $result = Car::getAll();
+        while($row = $result->fetch()){
+          ?>
+          <option value="<?php echo $row['car_id'] ?>">
+            <?php echo $row['car_color'] . ' ' .
+            $row['car_brand'] . ' ' .
+            $row['car_model'] . '. Seat limit: ' .
+            $row['car_seats'] . ' people'?>
+          </option>
+          <?php
+        }
+        ?>
       </select>
     </div>
     <!-- pick up location -->
     <div class="form-group">
       <label for="">Select pick-up location</label>
       <select class="form-control" name="">
-        <option value="">dummy</option>
+        <?php
+        include 'lib/Location.class.php'
+        $result = Location::getAll();
+        while($row = $result->fetch()){
+          ?>
+          <option value="<?php echo $row['location_id'] ?>">
+            <?php
+            echo $row['location_city'] . '---'.
+            $row['location_name']
+            ?>
+          </option>
+          <?php
+        }
+        ?>
       </select>
     </div>
     <!-- drop off location -->
     <div class="form-group">
       <label for="">Select drop-off location</label>
       <select class="form-control" name="">
-        <option value="">dummy</option>
+        <?php
+        include 'lib/Location.class.php'
+        $result = Location::getAll();
+        while($row = $result->fetch()){
+          ?>
+          <option value="<?php echo $row['location_id'] ?>">
+            <?php
+            echo $row['location_city'] . '---'.
+            $row['location_name']
+            ?>
+          </option>
+          <?php
+        }
+        ?>
       </select>
     </div>
     <!-- price -->
@@ -49,7 +88,17 @@
     <div class="form-group">
       <label for="">Select constraint(s)</label>
       <select class="form-control" name="" multiple>
-        <option value="">dummy</option>
+        <?php
+        include 'lib/Constraint.class.php';
+        $result = Constraint::getAll();
+        while($row = $result->fetch()){
+          ?>
+          <option value="<?php echo $row['constraint_id'] ?>">
+            <?php echo $row['constraint_description'] ?>
+          </option>
+          <?php
+        }
+        ?>
       </select>
     </div>
     <div class="form-group text-center">

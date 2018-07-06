@@ -2,6 +2,7 @@
 
 /**
 * Utility class for DB connection
+* Author: Andy Su
 */
 class DB
 {

@@ -29,7 +29,7 @@
       <select class="form-control" name="user_id">
         <?php
         include 'lib/User.class.php';
-        $result = User::selectAll();
+        $result = User::getAll();
         while($row = $result->fetch()){
           ?>
           <option value="<?php echo $row['user_id'] ?>"><?php echo $row['user_name'] ?></option>
