@@ -14,7 +14,7 @@ class Location
   */
   public static function getAll()
   {
-    
+
   }
 
 }

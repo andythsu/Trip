@@ -82,7 +82,7 @@ $(".form-signin").submit(function(e){
     return;
   }
   $.ajax({
-    "url" : 'backend/sign_up_verification.php',
+    "url" : 'daemon/sign_up_verification.php',
     "type" : 'post',
     "data" : form_data,
     success: function (json) {

@@ -100,7 +100,7 @@ $(".confirm_change_name_btn").on("click", function(){
     "id" : <?php echo $user_id ?>
   };
   $.ajax({
-    "url" : "backend/change_user_detail.php",
+    "url" : "daemon/change_user_detail.php",
     "type" : "post",
     "data" : form_data,
     success : function(json){
@@ -140,7 +140,7 @@ $(".confirm_change_email_btn").on('click', function(){
     "id" : <?php echo $user_id ?>
   };
   $.ajax({
-    "url" : "backend/change_user_detail.php",
+    "url" : "daemon/change_user_detail.php",
     "type" : "post",
     "data" : form_data,
     success : function(json){

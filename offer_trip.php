@@ -12,71 +12,73 @@
   <link rel="stylesheet" href="css/util.css">
 </head>
 <body>
-  <form class="container">
+  <form class="container" action="daemon/offer_trip.php" method="POST">
     <!-- select car  -->
     <div class="form-group">
       <label for="">Select your car</label>
-      <select class="form-control" name="">
+      <select class="form-control" name="car">
         <?php
-        include 'lib/Car.class.php';
-        $result = Car::getAll();
-        while($row = $result->fetch()){
-          ?>
-          <option value="<?php echo $row['car_id'] ?>">
-            <?php echo $row['car_color'] . ' ' .
-            $row['car_brand'] . ' ' .
-            $row['car_model'] . '. Seat limit: ' .
-            $row['car_seats'] . ' people'?>
-          </option>
-          <?php
-        }
+        // include 'lib/Car.class.php';
+        // $result = Car::getAll();
+        // while($row = $result->fetch()){
+        ?>
+        <!-- <option value="<?php echo $row['car_id'] ?>"> -->
+        <?php
+        // echo $row['car_color'] . ' ' .
+        // $row['car_brand'] . ' ' .
+        // $row['car_model'] . '. Seat limit: ' .
+        // $row['car_seats'] . ' people'
+        ?>
+        <!-- </option> -->
+        <?php
+        // }
         ?>
       </select>
     </div>
     <!-- pick up location -->
     <div class="form-group">
       <label for="">Select pick-up location</label>
-      <select class="form-control" name="">
+      <select class="form-control" name="pickup_location">
         <?php
-        include 'lib/Location.class.php'
-        $result = Location::getAll();
-        while($row = $result->fetch()){
-          ?>
-          <option value="<?php echo $row['location_id'] ?>">
-            <?php
-            echo $row['location_city'] . '---'.
-            $row['location_name']
-            ?>
-          </option>
-          <?php
-        }
+        // include 'lib/Location.class.php'
+        // $result = Location::getAll();
+        // while($row = $result->fetch()){
+        ?>
+        <!-- <option value="<?php echo $row['location_id'] ?>"> -->
+        <?php
+        // echo $row['location_city'] . '---'.
+        // $row['location_name']
+        ?>
+        <!-- </option> -->
+        <?php
+        // }
         ?>
       </select>
     </div>
     <!-- drop off location -->
     <div class="form-group">
       <label for="">Select drop-off location</label>
-      <select class="form-control" name="">
+      <select class="form-control" name="dropoff_location">
         <?php
-        include 'lib/Location.class.php'
-        $result = Location::getAll();
-        while($row = $result->fetch()){
-          ?>
-          <option value="<?php echo $row['location_id'] ?>">
-            <?php
-            echo $row['location_city'] . '---'.
-            $row['location_name']
-            ?>
-          </option>
-          <?php
-        }
+        // include 'lib/Location.class.php'
+        // $result = Location::getAll();
+        // while($row = $result->fetch()){
+        ?>
+        <!-- <option value="<?php echo $row['location_id'] ?>"> -->
+        <?php
+        // echo $row['location_city'] . '---'.
+        // $row['location_name']
+        ?>
+        <!-- </option> -->
+        <?php
+        // }
         ?>
       </select>
     </div>
     <!-- price -->
     <div class="form-group">
       <label for="">Trip price</label>
-      <select class="form-control" name="">
+      <select class="form-control" name="price">
         <option value="10">10 / person</option>
         <option value="15">15 / person</option>
         <option value="20">20 / person</option>
@@ -87,7 +89,7 @@
     <!-- constraints -->
     <div class="form-group">
       <label for="">Select constraint(s)</label>
-      <select class="form-control" name="" multiple>
+      <select class="form-control" name="constraints[]" multiple>
         <?php
         include 'lib/Constraint.class.php';
         $result = Constraint::getAll();

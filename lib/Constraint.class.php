@@ -12,7 +12,7 @@ class Constraint
   * @return object
   */
   public static function getAll(){
-    
+
   }
 
 }
