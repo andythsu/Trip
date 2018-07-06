@@ -19,12 +19,12 @@
   </div>
   <div class="container">
     <div class="">
-      <button class="btn btn-info custom_btn" onclick="window.location='#'">
+      <button class="btn btn-info custom_btn" onclick="window.location='offer_trip.php'">
         <p class="custom_text">
           Offer a ride
         </p>
       </button>
-      <button class="btn btn-info custom_btn" onclick="window.location='#'">
+      <button class="btn btn-info custom_btn" onclick="window.location='search_trip.php'">
         <p class="custom_text">
           Look for a ride
         </p>
