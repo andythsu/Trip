@@ -1,5 +1,5 @@
 <?php
-include 'DB.class.php';
+require_once('DB.class.php');
 
 /**
 * Constraint backend interface
@@ -12,7 +12,9 @@ class Constraint
   * @return object
   */
   public static function getAll(){
-
+    $sql = "SELECT * FROM constraints";
+    $result = DB::query($sql);
+    return $result;
   }
 
 }

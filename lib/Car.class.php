@@ -1,5 +1,5 @@
 <?php
-include 'DB.class.php';
+require_once('DB.class.php');
 
 /**
 * Car backend interface
@@ -12,9 +12,11 @@ class Car
   * @return object
   */
   public static function getAll(){
-
+    $sql = "SELECT * FROM car";
+    $result = DB::query($sql);
+    return $result;
   }
-
 }
+
 
 ?>

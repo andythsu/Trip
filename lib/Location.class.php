@@ -1,5 +1,5 @@
 <?php
-include 'DB.class.php';
+require_once('DB.class.php');
 
 /**
 * Location backend interface
@@ -14,7 +14,9 @@ class Location
   */
   public static function getAll()
   {
-
+    $sql = "SELECT * FROM location";
+    $result = DB::query($sql);
+    return $result;
   }
 
 }
