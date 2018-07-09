@@ -30,5 +30,7 @@ foreach ($constraints as $index => $constraint_id) {
 }
 /********************************************************/
 
+// redirect after everything is completed
+header('Location:../offer_trip_after.php');
 
 ?>
