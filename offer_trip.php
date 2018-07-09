@@ -55,6 +55,10 @@
         ?>
       </select>
     </div>
+    <div class="form-group">
+      <label for="">Select pick-up time</label>
+      <input class="form-control" type="datetime-local" name="pickup_time" max="9999-12-31T23:59">
+    </div>
     <!-- drop off location -->
     <div class="form-group">
       <label for="">Select drop-off location</label>
@@ -88,7 +92,7 @@
     <!-- constraints -->
     <div class="form-group">
       <label for="">Select constraint(s)</label>
-      <select class="form-control" name="constraints[]" multiple>
+      <select class="form-control" name="constraints[]" multiple required>
         <?php
         include 'lib/Constraint.class.php';
         $result = Constraint::getAll();
@@ -108,5 +112,32 @@
   </form>
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript">
+/* initialize minimum value for date picker. Set it to today*/
+$(document).ready(function(){
+  var date = today();
+  $("input[name=pickup_time]").attr("min", today);
+  $("input[name=pickup_time]").attr("value", today);
+});
+
+/**
+* return current date and time
+* @return yyyy-mm-ddTh:m
+*/
+function today(){
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+  var hours = today.getHours();
+  var minutes = today.getMinutes();
+  mm = mm.toString().length > 1 ? mm : "0"+mm;
+  dd = dd.toString().length > 1 ? dd : "0"+dd;
+  hours = hours.toString().length > 1 ? hours : "0"+hours;
+  minutes = minutes.toString().length > 1 ? minutes : "0"+minutes;
+  return yyyy+"-"+mm+"-"+dd+"T"+hours+":"+minutes;
+}
+</script>

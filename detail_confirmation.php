@@ -4,6 +4,9 @@ $user_id = $_POST['user_id'];
 $result = User::getByID($user_id);
 $user_name = $result[0]['user_name'];
 $user_email = $result[0]['user_email'];
+/* store user id in session for future references */
+session_start();
+$_SESSION['user_id'] = $user_id;
 ?>
 
 <!DOCTYPE html>
