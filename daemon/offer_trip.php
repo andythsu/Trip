@@ -31,6 +31,6 @@ foreach ($constraints as $index => $constraint_id) {
 /********************************************************/
 
 // redirect after everything is completed
-header('Location:../offer_trip_after.php');
+header('Location:../offer_trip_after.php?car_id='.$car_id.'&user_id='.$user_id.'&trip_id='.$trip_id);
 
 ?>

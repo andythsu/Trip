@@ -16,6 +16,13 @@ class Car
     $result = DB::query($sql);
     return $result;
   }
+
+  public static function getByID($id){
+    $sql = "SELECT * FROM car WHERE car_id = ?";
+    $data = array($id);
+    $result = DB::select($sql, $data);
+    return $result;
+  }
 }
 
 

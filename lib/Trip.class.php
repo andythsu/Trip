@@ -19,6 +19,13 @@ class Trip
     return $result;
   }
 
+  public static function getByID($id){
+    $sql = "SELECT * FROM trip WHERE trip_id = ?";
+    $data = array($id);
+    $result = DB::select($sql, $data);
+    return $result;
+  }
+
 }
 
 

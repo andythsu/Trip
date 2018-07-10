@@ -15,7 +15,72 @@
   <div class="container">
     <h1>Thank you for offering a trip.</h1>
     <h2>Your trip information is: </h2>
-    
+    <?php
+    require_once('lib/Car.class.php');
+    require_once('lib/Trip.class.php');
+    require_once('lib/Location.class.php');
+
+    $car_id = $_GET['car_id'];
+    $user_id = $_GET['user_id'];
+    $trip_id = $_GET['trip_id'];
+
+    $car_info = Car::getByID($car_id);
+    $car_info = $car_info[0];
+    $trip_info = Trip::getByID($trip_id);
+    $trip_info = $trip_info[0];
+    $pickup_loc_id = $trip_info['trip_pickup_location'];
+    $dropoff_loc_id = $trip_info['trip_dropoff_location'];
+    $pickup_loc_info = Location::getByID($pickup_loc_id);
+    $pickup_loc_info = $pickup_loc_info[0];
+    $dropoff_loc_info = Location::getByID($dropoff_loc_id);
+    $dropoff_loc_info = $dropoff_loc_info[0];
+    ?>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Car</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Brand</td>
+          <td><?php echo $car_info['car_brand']; ?></td>
+        </tr>
+        <tr>
+          <td>Model</td>
+          <td><?php echo $car_info['car_model']; ?></td>
+        </tr>
+        <tr>
+          <td>Color</td>
+          <td><?php echo $car_info['car_color']; ?></td>
+        </tr>
+      </tbody>
+      <thead>
+        <tr>
+          <th>Trip</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pick up location</td>
+          <td><?php echo $pickup_loc_info['location_city'] . '---' . $pickup_loc_info['location_name'] ?></td>
+        </tr>
+        <tr>
+          <td>Drop off location</td>
+          <td><?php echo $dropoff_loc_info['location_city'] . '---' . $pickup_loc_info['location_name'] ?></td>
+        </tr>
+        <tr>
+          <td>Pick up Time</td>
+          <td><?php echo $trip_info['trip_depart_time']; ?></td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td><?php echo $trip_info['trip_price']; ?></td>
+        </tr>
+      </tbody>
+    </table>
     <h3>You will be redirected soon...</h3>
   </div>
 </body>

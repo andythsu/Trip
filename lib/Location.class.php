@@ -19,6 +19,13 @@ class Location
     return $result;
   }
 
+  public static function getByID($id){
+    $sql = "SELECT * FROM location WHERE location_id = ?";
+    $data = array($id);
+    $result = DB::select($sql, $data);
+    return $result;
+  }
+
 }
 
 
