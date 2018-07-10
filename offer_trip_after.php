@@ -19,7 +19,8 @@
     require_once('lib/Car.class.php');
     require_once('lib/Trip.class.php');
     require_once('lib/Location.class.php');
-
+    require_once('lib/Limit.class.php');
+    
     $car_id = $_GET['car_id'];
     $user_id = $_GET['user_id'];
     $trip_id = $_GET['trip_id'];
@@ -34,6 +35,7 @@
     $pickup_loc_info = $pickup_loc_info[0];
     $dropoff_loc_info = Location::getByID($dropoff_loc_id);
     $dropoff_loc_info = $dropoff_loc_info[0];
+    $constraints = Limit::getConstraintsByTripID($trip_id);
     ?>
     <table class="table table-hover">
       <thead>
@@ -79,6 +81,24 @@
           <td>Price</td>
           <td><?php echo $trip_info['trip_price']; ?></td>
         </tr>
+        <tr>
+          <td>Constraints</td>
+          <td>
+            <?php
+            if(!empty($constraints)) echo $constraints[0]['constraint_description'];
+            ?>
+          </td>
+        </tr>
+        <?php
+        for ($i=1; $i < count($constraints); $i++) {
+          ?>
+          <tr>
+            <td></td>
+            <td><?php echo $constraints[$i]['constraint_description']; ?></td>
+          </tr>
+          <?php
+        }
+        ?>
       </tbody>
     </table>
     <h3>You will be redirected soon...</h3>
@@ -90,8 +110,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-  setTimeout(function() {
-    window.location.href = 'dashboard.php';
-  }, 3000);
+  // setTimeout(function() {
+  //   window.location.href = 'dashboard.php';
+  // }, 3000);
 });
 </script>

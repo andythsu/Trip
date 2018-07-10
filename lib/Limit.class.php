@@ -19,6 +19,18 @@ class Limit
     return $result;
   }
 
+  /**
+  * returns all constraint ids associated with trip id
+  * @param  int $trip_id
+  * @return array all constraints
+  */
+  public static function getConstraintsByTripID($trip_id){
+    $sql = "SELECT * FROM limits NATURAL JOIN constraints WHERE trip_id = ?";
+    $data = array($trip_id);
+    $result = DB::select($sql, $data);
+    return $result;
+  }
+
 }
 
 ?>
