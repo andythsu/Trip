@@ -20,7 +20,7 @@
     require_once('lib/Trip.class.php');
     require_once('lib/Location.class.php');
     require_once('lib/Limit.class.php');
-    
+
     $car_id = $_GET['car_id'];
     $user_id = $_GET['user_id'];
     $trip_id = $_GET['trip_id'];
