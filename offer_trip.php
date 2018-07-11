@@ -118,6 +118,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="js/util.js"></script>
 <script type="text/javascript">
 /* Set today as minimum value and default value */
 $(document).ready(function(){
@@ -125,22 +126,4 @@ $(document).ready(function(){
   $("input[name=pickup_time]").attr("min", today);
   $("input[name=pickup_time]").attr("value", today);
 });
-
-/**
-* return current date and time
-* @return yyyy-mm-ddTh:m
-*/
-function today(){
-  var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth()+1; //January is 0!
-  var yyyy = today.getFullYear();
-  var hours = today.getHours();
-  var minutes = today.getMinutes();
-  mm = mm.toString().length > 1 ? mm : "0"+mm;
-  dd = dd.toString().length > 1 ? dd : "0"+dd;
-  hours = hours.toString().length > 1 ? hours : "0"+hours;
-  minutes = minutes.toString().length > 1 ? minutes : "0"+minutes;
-  return yyyy+"-"+mm+"-"+dd+"T"+hours+":"+minutes;
-}
 </script>
