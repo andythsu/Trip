@@ -15,16 +15,18 @@
   <link rel="stylesheet" href="css/util.css">
 </head>
 <body>
-
-  <form class="container">
+  <div class="text-center">
+    <img src="img/index_logo.png" alt="" style="padding-top: 40px;" width="50%">
+  </div>
+  <form class="container" action="daemon/search_trip.php" method="post">
     <!-- time -->
     <div class="form-group">
       <label>Choose a time range</label>
       <br>
       <span>From</span>
-      <input class="form-control" type="datetime-local" name="pickup_time" max="9999-12-31T23:59">
+      <input class="form-control" type="datetime-local" name="from_time" max="9999-12-31T23:59">
       <span>To</span>
-      <input class="form-control" type="datetime-local" name="pickup_time" max="9999-12-31T23:59">
+      <input class="form-control" type="datetime-local" name="to_time" max="9999-12-31T23:59">
     </div>
     <!-- pick up location -->
     <div class="form-group">
@@ -45,10 +47,6 @@
         }
         ?>
       </select>
-    </div>
-    <div class="form-group">
-      <label for="">Select pick-up time</label>
-      <input class="form-control" type="datetime-local" name="pickup_time" max="9999-12-31T23:59">
     </div>
     <!-- drop off location -->
     <div class="form-group">
@@ -85,10 +83,10 @@
     <div class="form-group">
       <label>Sort By</label>
       <div class="radio">
-        <label><input type="radio" name="time">Time</label>
+        <label><input type="radio" name="sort_time">Time</label>
       </div>
       <div class="radio">
-        <label><input type="radio" name="price">Price</label>
+        <label><input type="radio" name="sort_price">Price</label>
       </div>
     </div>
     <hr>
@@ -107,7 +105,7 @@
 /* Set today as minimum value and default value */
 $(document).ready(function(){
   var date = today();
-  $("input[name=pickup_time]").attr("min", today);
-  $("input[name=pickup_time]").attr("value", today);
+  $("input[type=datetime-local]").attr("min", today);
+  $("input[type=datetime-local").attr("value", today);
 });
 </script>
