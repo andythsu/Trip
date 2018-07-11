@@ -36,3 +36,13 @@ function today(){
   minutes = minutes.toString().length > 1 ? minutes : "0"+minutes;
   return yyyy+"-"+mm+"-"+dd+"T"+hours+":"+minutes;
 }
+
+/**
+* reformat time to SQL format
+* @param  {String} time html5 datetime. Format: yyyy-mm-ddThh:mm
+* @return {String}      yyyy-mm-dd hh:mm:00
+*/
+function reformatTime(time){
+  var splits = time.split("T");
+  return splits[0] + " " + splits[1] + ":00";
+}

@@ -9,7 +9,10 @@
 
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  <title></title>
+
+  <title>Search Trip</title>
+
+  <link rel="stylesheet" href="css/util.css">
 </head>
 <body>
 
@@ -77,9 +80,7 @@
         <option value="30">30 / person</option>
       </select>
     </div>
-
     <hr>
-
     <!-- sort -->
     <div class="form-group">
       <label>Sort By</label>
@@ -89,6 +90,10 @@
       <div class="radio">
         <label><input type="radio" name="price">Price</label>
       </div>
+    </div>
+    <hr>
+    <div class="form-group text-center">
+      <button class="btn btn-primary">Search</button>
     </div>
   </form>
 
