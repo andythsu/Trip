@@ -111,7 +111,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
   setTimeout(function() {
-    window.location.href = 'dashboard.php';
+    window.location.href = 'search_trip_result.php';
   }, 3000);
 });
 </script>

@@ -21,7 +21,7 @@
             <button type="button" class="btn btn-primary">Rate Driver</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-primary">Re-search</button>
+            <button type="button" class="btn btn-primary" onclick="window.location.href='search_trip.php'">Re-search</button>
           </div>
         </div>
       </div>

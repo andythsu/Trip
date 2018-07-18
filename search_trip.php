@@ -18,7 +18,7 @@
   <div class="text-center">
     <img src="img/index_logo.png" alt="" style="padding-top: 40px;" width="50%">
   </div>
-  <form class="container" action="daemon/search_trip.php" method="post">
+  <form class="container" action="search_trip_result.php" method="POST">
     <!-- time -->
     <div class="form-group">
       <label>Choose a time range</label>
@@ -79,15 +79,15 @@
       </select>
     </div>
     <hr>
+    <input type="checkbox" name="view_all" checked='false'>View All
+    <hr>
     <!-- sort -->
     <div class="form-group">
       <label>Sort By</label>
-      <div class="radio">
-        <label><input type="radio" name="sort_time">Time</label>
-      </div>
-      <div class="radio">
-        <label><input type="radio" name="sort_price">Price</label>
-      </div>
+      <br>
+      <input type="checkbox" name="sort_time" checked='false'>Time
+      <br>
+      <input type="checkbox" name="sort_price">Price
     </div>
     <hr>
     <div class="form-group text-center">
@@ -102,10 +102,71 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="js/util.js"></script>
 <script type="text/javascript">
-/* Set today as minimum value and default value */
 $(document).ready(function(){
+  /* Set today as minimum value and default value */
   var date = today();
   $("input[type=datetime-local]").attr("min", today);
   $("input[type=datetime-local").attr("value", today);
+
+  /* set all checkboxes to unchecked */
+  var inputs = document.getElementsByTagName('input');
+  for (var i=0; i<inputs.length; i++)  {
+    if (inputs[i].type == 'checkbox') {
+      inputs[i].checked = false;
+    }
+  }
 });
 </script>
+
+<script type="text/javascript">
+
+var inputs = [$("input[name=from_time]"),$("input[name=to_time]"),$("select[name=pickup_location]"),$("select[name=dropoff_location]"),$("select[name=price]")];
+
+$("input[name=view_all]").on("click", function(){
+  if($(this).is(":checked")){
+    disableAll();
+  }else{
+    enableAll();
+  }
+});
+
+function disableAll(){
+  for(var i=0; i<inputs.length;i++){
+    inputs[i].prop("disabled", true);
+  }
+}
+
+function enableAll(){
+  for(var i=0; i<inputs.length;i++){
+    inputs[i].prop("disabled", false);
+  }
+}
+</script>
+
+<!-- <script type="text/javascript">
+$("form").submit(function(e){
+e.preventDefault();
+var data = {
+"from_time" : $("input[name=from_time]").val(),
+"to_time" : $("input[name=to_time]").val(),
+"all_time" : $("input[name=all_time_checkbox]").is(":checked"),
+"pickup_loc_id" : $("select[name=pickup_location]").val(),
+"all_pickup_loc" : $("input[name=all_pickup_loc_checkbox]").is(":checked"),
+"dropoff_loc_id" : $("select[name=dropoff_location]").val(),
+"all_dropoff_loc" : $("input[name=all_dropoff_loc_checkbox]").is(":checked"),
+"price" : $('select[name=price]').val(),
+"all_price" : $("input[name=all_price_checkbox]").is(":checked"),
+"sort_time" : $("input[name=sort_time]").is(":checked"),
+"sort_price" : $("input[name=sort_price]").is(":checked")
+};
+$.ajax({
+"url" : 'daemon/search_trip.php',
+"type" : 'post',
+"data" : data,
+success : function(json){
+console.log(json);
+}
+});
+// console.log(data);
+});
+</script> -->
