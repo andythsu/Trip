@@ -30,7 +30,7 @@ class Limit
     $result = DB::select($sql, $data);
     return $result;
   }
-  
+
 }
 
 ?>

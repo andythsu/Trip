@@ -40,6 +40,14 @@
           View offered trips
         </p>
       </button>
+      <br>
+      <div class="text-center">
+        <button class="btn btn-link" onclick="window.location='index.php'">
+          <p>
+            Sign out
+          </p>
+        </button>
+      </div>
     </div>
   </div>
 </body>

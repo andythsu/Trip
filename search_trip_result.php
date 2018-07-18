@@ -60,9 +60,13 @@ if($view_all == 'on'){
     // get constraints
     $constraints = Limit::getConstraintsByTripID($row['trip_id']);
     $all_constraint = "";
-    foreach ($constraints as $index => $constraint) {
-      if($index > 0) $all_constraint .= ", ";
-      $all_constraint .= $constraint['constraint_description'];
+    if(empty($constraints)){
+      $all_constraint = "None";
+    }else{
+      foreach ($constraints as $index => $constraint) {
+        if($index > 0) $all_constraint .= ", ";
+        $all_constraint .= $constraint['constraint_description'];
+      }
     }
     // done
     $results[$counter]['trip_depart_time'] = $row['trip_depart_time'];
@@ -101,9 +105,13 @@ if($view_all == 'on'){
     $trip_id = $result['trip_id'];
     $constraints = Limit::getConstraintsByTripID($trip_id);
     $all_constraint = "";
-    foreach ($constraints as $c_index => $constraint) {
-      if($c_index > 0) $all_constraint .= ", ";
-      $all_constraint .= $constraint['constraint_description'];
+    if(empty($constraints)){
+      $all_constraint = "None";
+    }else{
+      foreach ($constraints as $c_index => $constraint) {
+        if($c_index > 0) $all_constraint .= ", ";
+        $all_constraint .= $constraint['constraint_description'];
+      }
     }
     $results[$r_index]['constraint'] = $all_constraint;
   }
