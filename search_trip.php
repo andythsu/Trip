@@ -85,9 +85,13 @@
     <div class="form-group">
       <label>Sort By</label>
       <br>
-      <input type="checkbox" name="sort_time" checked='false'>Time
+      <input class="single-checkbox" type="checkbox" name="sort_time_asc"> Time ASC
       <br>
-      <input type="checkbox" name="sort_price">Price
+      <input class="single-checkbox" type="checkbox" name="sort_price_asc"> Price ASC
+      <br>
+      <input class="single-checkbox" type="checkbox" name="sort_time_desc"> Time DESC
+      <br>
+      <input class="single-checkbox" type="checkbox" name="sort_price_desc"> Price DESC
     </div>
     <hr>
     <div class="form-group text-center">
@@ -127,6 +131,13 @@ $("input[name=view_all]").on("click", function(){
     disableAll();
   }else{
     enableAll();
+  }
+});
+
+// limit to 1 checkbox selection
+$("input.single-checkbox").on("change", function(){
+  if($(this).siblings(":checked").length >= 1) {
+    this.checked = false;
   }
 });
 

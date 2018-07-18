@@ -39,6 +39,42 @@ class Post
     return $result;
   }
 
+  public static function getAllDetailSortTimeASC(){
+    $sql = "SELECT * FROM posts NATURAL JOIN user u NATURAL JOIN car c NATURAL JOIN trip t ORDER BY t.trip_depart_time ASC";
+    $result = DB::query($sql);
+    return $result;
+  }
+
+  public static function getAllDetailSortPriceASC(){
+    $sql = "SELECT * FROM posts NATURAL JOIN user u NATURAL JOIN car c NATURAL JOIN trip t ORDER BY t.trip_price ASC";
+    $result = DB::query($sql);
+    return $result;
+  }
+
+  public static function getAllDetailSortTimeDESC(){
+    $sql = "SELECT * FROM posts NATURAL JOIN user u NATURAL JOIN car c NATURAL JOIN trip t ORDER BY t.trip_depart_time DESC";
+    $result = DB::query($sql);
+    return $result;
+  }
+
+  public static function getAllDetailSortPriceDESC(){
+    $sql = "SELECT * FROM posts NATURAL JOIN user u NATURAL JOIN car c NATURAL JOIN trip t ORDER BY t.trip_price DESC";
+    $result = DB::query($sql);
+    return $result;
+  }
+
+  public static function getAllDetailByConditionSortASC($data){
+    $sql = "SELECT * FROM posts NATURAL JOIN user NATURAL JOIN car NATURAL JOIN trip WHERE trip_depart_time between ? AND ? AND trip_price = ? AND trip_pickup_location = ? AND trip_dropoff_location = ? ORDER BY ? ASC";
+    $result = DB::select($sql, $data);
+    return $result;
+  }
+
+  public static function getAllDetailByConditionSortDESC($data){
+    $sql = "SELECT * FROM posts NATURAL JOIN user NATURAL JOIN car NATURAL JOIN trip WHERE trip_depart_time between ? AND ? AND trip_price = ? AND trip_pickup_location = ? AND trip_dropoff_location = ? ORDER BY ? ASC";
+    $result = DB::select($sql, $data);
+    return $result;
+  }
+
 }
 
 
