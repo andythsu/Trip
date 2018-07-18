@@ -24,7 +24,7 @@ class Post
   * @return array data found in all three tables
   */
   public static function getAllDetail(){
-    $sql = "SELECT * FROM posts NATURAL JOIN user NATURAL JOIN car NATURAL JOIN trip";
+    $sql = "SELECT * FROM posts NATURAL JOIN user u NATURAL JOIN car c NATURAL JOIN trip t";
     $result = DB::query($sql);
     return $result;
   }

@@ -3,6 +3,7 @@ require_once('lib/util.php');
 require_once('lib/Trip.class.php');
 require_once('lib/Location.class.php');
 require_once('lib/Post.class.php');
+require_once('lib/Limit.class.php');
 
 if(!empty($_POST)){
   if(array_key_exists("from_time", $_POST)){
@@ -36,12 +37,23 @@ if($view_all == 'on'){
   $trip_result = Post::getAllDetail();
   $results = array();
   $counter = 0;
+  // reformat the output so all data looks the same for future use
   while($row = $trip_result->fetch()){
-    // reformat the output so all data looks the same for future use
+
+    // get constraints
+    $constraints = Limit::getConstraintsByTripID($row['trip_id']);
+    $all_constraint = "";
+    foreach ($constraints as $index => $constraint) {
+      if($index > 0) $all_constraint .= ", ";
+      $all_constraint .= $constraint['constraint_description'];
+    }
+    // done
+
     $results[$counter]['trip_depart_time'] = $row['trip_depart_time'];
     $results[$counter]['trip_price'] = $row['trip_price'];
     $results[$counter]['trip_dropoff_location'] = $row['trip_dropoff_location'];
     $results[$counter]['trip_pickup_location'] = $row['trip_pickup_location'];
+    $results[$counter]['constraint'] = $all_constraint;
     $results[$counter]['user_name'] = $row['user_name'];
     $results[$counter]['user_email'] = $row['user_email'];
     $results[$counter]['car_color'] = $row['car_color'];
@@ -52,6 +64,17 @@ if($view_all == 'on'){
 }else{
   $data = array($from_time, $to_time, $price, $pickup_loc_id, $dropoff_loc_id);
   $results = Post::getAllDetailByCondition($data);
+  // concatenate constraint
+  foreach ($results as $r_index => $result) {
+    $trip_id = $result['trip_id'];
+    $constraints = Limit::getConstraintsByTripID($trip_id);
+    $all_constraint = "";
+    foreach ($constraints as $c_index => $constraint) {
+      if($c_index > 0) $all_constraint .= ", ";
+      $all_constraint .= $constraint['constraint_description'];
+    }
+    $results[$r_index]['constraint'] = $all_constraint;
+  }
   // output($results);
 }
 
@@ -81,6 +104,7 @@ if($view_all == 'on'){
       <h1>No matching rows</h1>
       <?php
     }else{
+      // output($results);
       ?>
       <table class="table">
         <tr>
@@ -141,6 +165,7 @@ function custom_alert(json_obj){
       <td>`+json_obj['car_color'] + " " + json_obj['car_brand'] + " " + json_obj['car_model']+`</td>
       </tr>
       </table>
+      <p>Constraints: `+json_obj['constraint']+`</p>
       `
     }
   };
