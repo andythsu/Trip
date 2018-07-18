@@ -13,30 +13,30 @@ function getModal(attr){
 
   var customModal = $(`
     <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-    <div class="modal-header">
-    <h1 style="color:`+header_color+`">`+header_content+`</h1>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 style="color:`+header_color+`">`+header_content+`</h1>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <h5 style="color:`+body_color+`">`+body_content+`</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="modal-body">
-    <h5 style="color:`+body_color+`">`+body_content+`</h5>
-    </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>`);
-    return customModal;
-  }
+  </div>`);
+  return customModal;
+}
 
-  function appendModal(customModal) {
-    $('body').append(customModal);
-    $('#myModal').modal();
-    $('#myModal').on('hidden.bs.modal', function () {
-      $(this).remove();
-    });
-  }
+function appendModal(customModal) {
+  $('body').append(customModal);
+  $('#myModal').modal();
+  $('#myModal').on('hidden.bs.modal', function () {
+    $(this).remove();
+  });
+}

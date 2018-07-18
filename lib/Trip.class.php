@@ -37,19 +37,6 @@ class Trip
     return $result;
   }
 
-  /**
-  * get trips with specific conditions
-  * @return array trips found in table
-  */
-  public static function getByCondition($data){
-    $sql = "SELECT * FROM trip WHERE trip_depart_time between ? AND ? AND trip_price = ? AND trip_pickup_location = ? AND trip_dropoff_location = ?";
-    // $sql = "SELECT * FROM trip WHERE trip_price = ? AND trip_pickup_location = ? AND trip_dropoff_location = ?";
-    // output($data);
-    $result = DB::select($sql, $data);
-    return $result;
-  }
-
-
 }
 
 
