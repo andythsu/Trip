@@ -113,6 +113,9 @@
       <button class="btn btn-info">Submit</button>
     </div>
   </form>
+  <div class="text-center">
+    <button class="btn btn-dark" onclick="window.location='route.php'">Back</button>
+  </div>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

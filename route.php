@@ -29,9 +29,15 @@
           Look for a ride
         </p>
       </button>
+      <br>
       <button class="btn btn-info custom_btn" onclick="window.location='rate_user.php'">
         <p class="custom_text">
           Rating center
+        </p>
+      </button>
+      <button class="btn btn-info custom_btn" onclick="window.location='my_trip.php'">
+        <p class="custom_text">
+          View offered trips
         </p>
       </button>
     </div>

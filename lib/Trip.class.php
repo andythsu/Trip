@@ -37,6 +37,13 @@ class Trip
     return $result;
   }
 
+  public static function deleteByID($id){
+    $sql = "DELETE FROM trip WHERE trip_id = ?";
+    $data = array($id);
+    $result = DB::delete($sql, $data);
+    return $result;
+  }
+
 }
 
 

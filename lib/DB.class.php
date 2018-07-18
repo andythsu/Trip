@@ -119,6 +119,30 @@ class DB
     }
   }
 
+  public static function delete($sql, $bind_param)
+  {
+    self::checkCon();
+    try{
+      $stmt = self::$connection->prepare($sql);
+      for ($i=0; $i < count($bind_param); $i++) {
+        $stmt->bindParam($i+1, $bind_param[$i]);
+      }
+      if($stmt->execute()){
+        // return true if success
+        return true;
+      }else{
+        // return error info if no execution
+        return $stmt->errorInfo();
+      }
+    }catch(Exception $e){
+      // show message if error
+      die("message: " . $e->getMessage());
+    }finally{
+      // close statement object
+      unset($stmt);
+    }
+  }
+
   public static function checkCon()
   {
     if(self::$connection === null){

@@ -75,6 +75,13 @@ class Post
     return $result;
   }
 
+  public static function getByUserID($id){
+    $sql = "SELECT * FROM posts NATURAL JOIN car NATURAL JOIN user NATURAL JOIN trip WHERE user.user_id = ?";
+    $data = array($id);
+    $result = DB::select($sql, $data);
+    return $result;
+  }
+
 }
 
 

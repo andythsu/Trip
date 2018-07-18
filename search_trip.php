@@ -98,7 +98,9 @@
       <button class="btn btn-primary">Search</button>
     </div>
   </form>
-
+  <div class="text-center">
+    <button class="btn btn-dark" onclick="window.location='route.php'">Back</button>
+  </div>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -153,31 +155,3 @@ function enableAll(){
   }
 }
 </script>
-
-<!-- <script type="text/javascript">
-$("form").submit(function(e){
-e.preventDefault();
-var data = {
-"from_time" : $("input[name=from_time]").val(),
-"to_time" : $("input[name=to_time]").val(),
-"all_time" : $("input[name=all_time_checkbox]").is(":checked"),
-"pickup_loc_id" : $("select[name=pickup_location]").val(),
-"all_pickup_loc" : $("input[name=all_pickup_loc_checkbox]").is(":checked"),
-"dropoff_loc_id" : $("select[name=dropoff_location]").val(),
-"all_dropoff_loc" : $("input[name=all_dropoff_loc_checkbox]").is(":checked"),
-"price" : $('select[name=price]').val(),
-"all_price" : $("input[name=all_price_checkbox]").is(":checked"),
-"sort_time" : $("input[name=sort_time]").is(":checked"),
-"sort_price" : $("input[name=sort_price]").is(":checked")
-};
-$.ajax({
-"url" : 'daemon/search_trip.php',
-"type" : 'post',
-"data" : data,
-success : function(json){
-console.log(json);
-}
-});
-// console.log(data);
-});
-</script> -->
