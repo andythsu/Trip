@@ -53,6 +53,30 @@ class User
     return $result;
   }
 
+  public static function getAllSumRating(){
+    $sql = "SELECT u.user_name, u.user_id, sum(r.rating_score) as sum from rating r, user u where r.user_id = u.user_id group by r.user_id";
+    $result = DB::query($sql);
+    return $result->fetchAll();
+  }
+
+  public static function getAllNoRating(){
+    $sql = "SELECT user_name FROM user WHERE NOT EXISTS ( SELECT user_id FROM rating)";
+    $result = DB::query($sql);
+    return $result->fetchAll();
+  }
+
+  public static function getHighestScore(){
+    $sql = 'SELECT DISTINCT user_id, MAX(rating_score) FROM rating';
+    $result = DB::query($sql);
+    return $result->fetchAll();
+  }
+
+  public static function getLowestScore(){
+    $sql = 'SELECT DISTINCT user_id, MIN(rating_score) FROM rating';
+    $result = DB::query($sql);
+    return $result->fetchAll();
+  }
+
 }
 
 

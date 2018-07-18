@@ -33,10 +33,13 @@ if(!empty($_POST)){
 
 if(!empty($_GET)){
   $view_all = array_key_exists("view_all", $_GET) ? $_GET['view_all'] : "";
+  $sort_price_asc = '';
+  $sort_time_asc = '';
+  $sort_price_desc = '';
+  $sort_time_desc = '';
 }
 
 if($view_all == 'on'){
-
   if($sort_price_asc == 'on'){
     $trip_result = Post::getAllDetailSortPriceASC();
   }else if($sort_time_asc == 'on'){

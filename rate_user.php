@@ -13,16 +13,81 @@
   <title>Rating Center</title>
 </head>
 <body>
+  <?php
+  require_once('lib/User.class.php');
+  require_once('lib/util.php');
+  ?>
   <div class="container">
+    <!-- return average rating for all users -->
     <div class="">
-
-    </div>
-
-    <div class="">
-      <table>
-        
+      <table class="table">
+        <tr>
+          <th>User Name</th>
+          <th>Sum</th>
+        </tr>
+        <?php
+        $all_ratings = User::getAllSumRating();
+        if(!empty($all_ratings)){
+          foreach ($all_ratings as $index => $rating) {
+            ?>
+            <tr>
+              <td><?php echo $rating['user_name']; ?></td>
+              <td><?php echo $rating['sum']; ?></td>
+              <td><button class="btn btn-default">Rate now</button></td>
+            </tr>
+            <?php
+          }
+        }else{
+          ?>
+          <tr>
+            <td>No matching result</td>
+          </tr>
+          <?php
+        }
+        ?>
       </table>
     </div>
+    <hr>
+
+    <h1>Statistics</h1>
+
+    <!-- return users that have not been rated -->
+    <h4>Users that have not been rated</h4>
+    <table class="table">
+      <tr>
+        <th>User Name</th>
+      </tr>
+      <?php
+      $no_ratings = User::getAllNoRating();
+      if(!empty($no_ratings)){
+        foreach ($no_ratings as $index => $no_rating) {
+          ?>
+          <tr>
+            <td><?php echo $no_rating['user_name']; ?></td>
+          </tr>
+          <?php
+        }
+      }else{
+        ?>
+        <tr>
+          <td>No matching result</td>
+        </tr>
+        <?php
+      }
+      ?>
+    </table>
+    <h4>User rated with highest score:
+      <?php
+      $highest_score = User::getHighestScore();
+      output($highest_score);
+      ?>
+    </h4>
+    <h4>User rated with loest score:
+
+      <?php
+      $lowest_score = User::getLowestScore();
+      ?>
+    </h4>
   </div>
 </body>
 </html>
