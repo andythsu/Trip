@@ -8,6 +8,9 @@ body, html{
 .pt-2em{
   padding-top: 2em;
 }
+.pl-1em{
+  padding-left: 1em;
+}
 hr{
   border-top: 2px solid #aaa;
 }

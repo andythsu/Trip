@@ -10,6 +10,8 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="css/util.css">
+
   <title>Rating Center</title>
 </head>
 <body>
@@ -18,35 +20,44 @@
   require_once('lib/util.php');
   ?>
   <div class="container">
-    <!-- return average rating for all users -->
-    <div class="">
-      <table class="table">
-        <tr>
-          <th>User Name</th>
-          <th>Sum</th>
-        </tr>
-        <?php
-        $all_ratings = User::getAllSumRating();
-        if(!empty($all_ratings)){
-          foreach ($all_ratings as $index => $rating) {
-            ?>
-            <tr>
-              <td><?php echo $rating['user_name']; ?></td>
-              <td><?php echo $rating['sum']; ?></td>
-              <td><button class="btn btn-default">Rate now</button></td>
-            </tr>
+    <form method = "POST" action = "daemon/rate_user.php">
+      <!-- banner area -->
+      <div class="alert alert-success" style="display: none"></div>
+      <div class="alert alert-danger" style="display: none"></div>
+      <!-- ///// -->
+      <h1>Rate Users</h1>
+      <!-- return average rating for all users -->
+      <div class="" >
+        <div class="" style="display: inline-block">
+          <h4>Who do you want to rate</h4>
+          <select class="" name="user_id">
             <?php
-          }
-        }else{
-          ?>
-          <tr>
-            <td>No matching result</td>
-          </tr>
-          <?php
-        }
-        ?>
-      </table>
+            $users = User::getAll();
+            while($row = $users->fetch()){
+              ?>
+              <option value=<?php echo $row['user_id']; ?>><?php echo $row['user_name']; ?></option>
+              <?php
+            }
+            ?>
+          </select>
+        </div>
+        <div class="pl-1em" style="display: inline-block">
+          <h4>What's your rating?</h4>
+          <select class="" name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="pl-1em" style="display: inline-block">
+          <button class="btn btn-primary rate_btn">Submit</button>
+        </div>
+      </form>
+      <button class="btn btn-dark" type="button" name="button" onclick="window.location='route.php'">Back</button>
     </div>
+
     <hr>
 
     <h1>Statistics</h1>
@@ -76,18 +87,42 @@
       }
       ?>
     </table>
-    <h4>User rated with highest score:
+    <h4>User rated with highest score</h4>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
       <?php
-      $highest_score = User::getHighestScore();
-      output($highest_score);
+      $scores = User::getHighestScore();
+      foreach ($scores as $index => $score) {
+        ?>
+        <tr>
+          <td><?php echo $score['user_name']; ?></td>
+          <td><?php echo $score['average'] ?></td>
+        </tr>
+        <?php
+      }
       ?>
-    </h4>
-    <h4>User rated with loest score:
-
+    </table>
+    <h4>User rated with lowest score</h4>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
       <?php
-      $lowest_score = User::getLowestScore();
+      $scores = User::getLowestScore();
+      foreach ($scores as $index => $score) {
+        ?>
+        <tr>
+          <td><?php echo $score['user_name']; ?></td>
+          <td><?php echo $score['average'] ?></td>
+        </tr>
+        <?php
+      }
       ?>
-    </h4>
+    </table>
   </div>
 </body>
 </html>

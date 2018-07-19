@@ -53,8 +53,8 @@ class User
     return $result;
   }
 
-  public static function getAllSumRating(){
-    $sql = "SELECT u.user_name, u.user_id, sum(r.rating_score) as sum from rating r, user u where r.user_id = u.user_id group by r.user_id";
+  public static function getAllRating(){
+    $sql = "SELECT u.user_name, u.user_id, round(avg(r.rating_score),0) as avg from rating r, user u where r.user_id = u.user_id group by r.user_id";
     $result = DB::query($sql);
     return $result->fetchAll();
   }
@@ -66,13 +66,13 @@ class User
   }
 
   public static function getHighestScore(){
-    $sql = 'SELECT DISTINCT user_id, MAX(rating_score) FROM rating';
+    $sql = 'SELECT u1.user_name, round(avg(r1.rating_score),0) as average FROM rating r1, user u1 WHERE u1.user_id = r1.user_id  GROUP BY r1.user_id HAVING average >= all (SELECT avg(r2.rating_score) FROM rating r2 GROUP BY r2.user_id)';
     $result = DB::query($sql);
     return $result->fetchAll();
   }
 
   public static function getLowestScore(){
-    $sql = 'SELECT DISTINCT user_id, MIN(rating_score) FROM rating';
+    $sql = 'SELECT u1.user_name, round(avg(r1.rating_score),0) as average FROM rating r1, user u1 WHERE u1.user_id = r1.user_id  GROUP BY r1.user_id HAVING average <= all (SELECT avg(r2.rating_score) FROM rating r2 GROUP BY r2.user_id)';
     $result = DB::query($sql);
     return $result->fetchAll();
   }
