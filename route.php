@@ -12,6 +12,8 @@
   <link href="css/index.css" rel="stylesheet">
   <link href="css/util.css" rel="stylesheet">
 
+  <title>Route</title>
+
 </head>
 <body>
   <div class="text-center">
