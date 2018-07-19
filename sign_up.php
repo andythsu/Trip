@@ -37,6 +37,7 @@
       <button class="btn btn-primary form-control sign_up_btn" type="submit" name="button" style="margin-top: 10px">Sign Up</button>
 
     </form>
+    <button class="btn btn-dark" onclick="window.location='index.php'">Back</button>
   </div>
 </body>
 </html>

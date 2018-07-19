@@ -95,13 +95,21 @@
       </tr>
       <?php
       $scores = User::getHighestScore();
-      foreach ($scores as $index => $score) {
+      if(empty($scores)){
         ?>
         <tr>
-          <td><?php echo $score['user_name']; ?></td>
-          <td><?php echo $score['average'] ?></td>
+          <td>No matching result</td>
         </tr>
         <?php
+      }else{
+        foreach ($scores as $index => $score) {
+          ?>
+          <tr>
+            <td><?php echo $score['user_name']; ?></td>
+            <td><?php echo $score['average'] ?></td>
+          </tr>
+          <?php
+        }
       }
       ?>
     </table>
@@ -113,13 +121,21 @@
       </tr>
       <?php
       $scores = User::getLowestScore();
-      foreach ($scores as $index => $score) {
+      if (empty($scores)) {
         ?>
         <tr>
-          <td><?php echo $score['user_name']; ?></td>
-          <td><?php echo $score['average'] ?></td>
+          <td>No matching result</td>
         </tr>
         <?php
+      }else{
+        foreach ($scores as $index => $score) {
+          ?>
+          <tr>
+            <td><?php echo $score['user_name']; ?></td>
+            <td><?php echo $score['average'] ?></td>
+          </tr>
+          <?php
+        }
       }
       ?>
     </table>

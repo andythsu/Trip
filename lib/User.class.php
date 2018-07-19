@@ -60,7 +60,7 @@ class User
   }
 
   public static function getAllNoRating(){
-    $sql = "SELECT user_name FROM user WHERE NOT EXISTS ( SELECT user_id FROM rating)";
+    $sql = "SELECT user_id, user_name FROM user WHERE user_id NOT IN (SELECT user_id FROM rating)";
     $result = DB::query($sql);
     return $result->fetchAll();
   }

@@ -96,7 +96,7 @@
     <!-- constraints -->
     <div class="form-group">
       <label for="">Select constraint(s)</label>
-      <select class="form-control" name="constraints[]" multiple required>
+      <select class="form-control" name="constraints[]" multiple>
         <?php
         include 'lib/Constraint.class.php';
         $result = Constraint::getAll();
