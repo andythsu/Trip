@@ -29,7 +29,7 @@
       <!-- return average rating for all users -->
       <div class="" >
         <div class="" style="display: inline-block">
-          <h4>Who do you want to rate</h4>
+          <h4>Who do you want to rate?</h4>
           <select class="" name="user_id">
             <?php
             $users = User::getAll();
@@ -87,7 +87,7 @@
       }
       ?>
     </table>
-    <h4>User rated with highest score</h4>
+    <h4>Highest rated user</h4>
     <table class="table">
       <tr>
         <th>Name</th>
@@ -113,7 +113,7 @@
       }
       ?>
     </table>
-    <h4>User rated with lowest score</h4>
+    <h4>Lowest rated user</h4>
     <table class="table">
       <tr>
         <th>Name</th>
@@ -139,7 +139,7 @@
       }
       ?>
     </table>
-    <h4>User rated more than 3 scores</h4>
+    <h4>Cool drivers (Average rating >= 3)</h4>
     <table class="table">
       <tr>
         <th>Name</th>
