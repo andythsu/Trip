@@ -19,6 +19,7 @@
     <img src="img/index_logo.png" alt="" style="padding-top: 40px;" width="50%">
   </div>
   <form class="container" action="search_trip_result.php" method="POST">
+    <h1>Search Your Trip</h1>
     <!-- time -->
     <div class="form-group">
       <label>Choose a time range</label>

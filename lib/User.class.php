@@ -77,6 +77,12 @@ class User
     return $result->fetchAll();
   }
 
+  public static function getMoreThanThreeScore(){
+    $sql = 'SELECT rating.user_id, user.user_name, ROUND(AVG(rating_score),0) AS rating_score FROM rating, user WHERE user.user_id = rating.user_id GROUP BY rating.user_id HAVING AVG(rating_score)>=3';
+    $result = DB::query($sql);
+    return $result->fetchAll();
+  }
+
 }
 
 

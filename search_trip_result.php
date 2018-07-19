@@ -137,6 +137,8 @@ if($view_all == 'on'){
 </head>
 <body>
   <div class="container">
+    <h2>All available Trips</h2>
+    <button class="btn btn-info" onclick="window.location.href='search_trip.php'">Search again</button>
     <?php
     if(empty($results)){
       ?>
@@ -176,7 +178,7 @@ if($view_all == 'on'){
     }
     ?>
   </table>
-  <button class="btn btn-info" onclick="window.location.href='search_trip.php'">Re-search</button>
+  <button class="btn btn-info" onclick="window.location.href='search_trip.php'">Search again</button>
 </div>
 </body>
 </html>

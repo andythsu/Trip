@@ -17,6 +17,7 @@
     <img src="img/index_logo.png" alt="" style="padding-top: 40px;" width="50%">
   </div>
   <form class="container" action="daemon/offer_trip.php" method="POST">
+    <h1>Offer A Trip</h1>
     <!-- select car  -->
     <div class="form-group">
       <label for="">Select your car</label>

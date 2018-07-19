@@ -139,6 +139,30 @@
       }
       ?>
     </table>
+    <h4>User rated more than 3 scores</h4>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+      </tr>
+      <?php
+      $users = User::getMoreThanThreeScore();
+      if(empty($users)){
+        ?>
+        <tr>
+          <td>No matching results</td>
+        </tr>
+        <?php
+      }else{
+        foreach ($users as $index => $user) {
+          ?>
+          <tr>
+            <td><?php echo $user['user_name'] ?></td>
+          </tr>
+          <?php
+        }
+      }
+      ?>
+    </table>
   </div>
 </body>
 </html>
