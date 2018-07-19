@@ -25,9 +25,9 @@
       <label>Choose a time range</label>
       <br>
       <span>From</span>
-      <input class="form-control" type="datetime-local" name="from_time" max="9999-12-31T23:59">
+      <input class="form-control" type="datetime-local" name="from_time" max="9999-12-31T23:59" required>
       <span>To</span>
-      <input class="form-control" type="datetime-local" name="to_time" max="9999-12-31T23:59">
+      <input class="form-control" type="datetime-local" name="to_time" max="9999-12-31T23:59" required>
     </div>
     <!-- pick up location -->
     <div class="form-group">
@@ -70,13 +70,10 @@
     </div>
     <!-- price -->
     <div class="form-group">
-      <label for="">Trip price</label>
+      <label for="">Trip price range</label>
       <select class="form-control" name="price">
-        <option value="10">10 / person</option>
-        <option value="15">15 / person</option>
-        <option value="20">20 / person</option>
-        <option value="25">25 / person</option>
-        <option value="30">30 / person</option>
+        <option value="10-20">10 ~ 20</option>
+        <option value="20-30">20 ~ 30</option>
       </select>
     </div>
     <hr>
@@ -155,4 +152,5 @@ function enableAll(){
     inputs[i].prop("disabled", false);
   }
 }
+
 </script>

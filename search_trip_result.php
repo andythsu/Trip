@@ -21,7 +21,16 @@ if(!empty($_POST)){
 
   $pickup_loc_id = array_key_exists("pickup_location", $_POST) ? $_POST['pickup_location'] : "";
   $dropoff_loc_id = array_key_exists("dropoff_location", $_POST) ? $_POST['dropoff_location'] : "";
-  $price = array_key_exists("price", $_POST) ? $_POST['price'] : "";
+  if(array_key_exists("price", $_POST)){
+    $price = explode("-", $_POST['price']);
+    $from_price = $price[0];
+    $to_price = $price[1];
+  }else{
+    $price = "";
+    $from_price = "";
+    $to_price = "";
+  }
+
   $sort_time_asc = array_key_exists("sort_time_asc", $_POST)? $_POST['sort_time_asc'] : "";
   $sort_price_asc = array_key_exists("sort_price_asc", $_POST)? $_POST['sort_price_asc'] : "";
   $sort_time_desc = array_key_exists("sort_time_desc", $_POST)? $_POST['sort_time_desc'] : "";
@@ -85,19 +94,19 @@ if($view_all == 'on'){
 }else{
 
   if($sort_price_asc == 'on'){
-    $data = array($from_time, $to_time, $price, $pickup_loc_id, $dropoff_loc_id, "trip_price");
+    $data = array($from_time, $to_time, $from_price, $to_price, $pickup_loc_id, $dropoff_loc_id, "trip_price");
     $results = Post::getAllDetailByConditionSortASC($data);
   }else if($sort_time_asc == 'on'){
-    $data = array($from_time, $to_time, $price, $pickup_loc_id, $dropoff_loc_id, "trip_depart_time");
+    $data = array($from_time, $to_time, $from_price, $to_price, $pickup_loc_id, $dropoff_loc_id, "trip_depart_time");
     $results = Post::getAllDetailByConditionSortASC($data);
   }else if($sort_time_desc == 'on'){
-    $data = array($from_time, $to_time, $price, $pickup_loc_id, $dropoff_loc_id, "trip_depart_time");
+    $data = array($from_time, $to_time, $from_price, $to_price, $pickup_loc_id, $dropoff_loc_id, "trip_depart_time");
     $results = Post::getAllDetailByConditionSortDESC($data);
   }else if($sort_price_desc == 'on'){
-    $data = array($from_time, $to_time, $price, $pickup_loc_id, $dropoff_loc_id, "trip_price");
+    $data = array($from_time, $to_time, $from_price, $to_price, $pickup_loc_id, $dropoff_loc_id, "trip_price");
     $results = Post::getAllDetailByConditionSortDESC($data);
   }else{
-    $data = array($from_time, $to_time, $price, $pickup_loc_id, $dropoff_loc_id);
+    $data = array($from_time, $to_time, $from_price, $to_price, $pickup_loc_id, $dropoff_loc_id);
     $results = Post::getAllDetailByCondition($data);
   }
   // concatenate constraint
@@ -137,7 +146,7 @@ if($view_all == 'on'){
 </head>
 <body>
   <div class="container">
-    <h2>All available Trips</h2>
+    <h2>All Available Trips</h2>
     <button class="btn btn-info" onclick="window.location.href='search_trip.php'">Search again</button>
     <?php
     if(empty($results)){

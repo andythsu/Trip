@@ -34,7 +34,7 @@ class Post
   * @return array data found in all three tables
   */
   public static function getAllDetailByCondition($data){
-    $sql = "SELECT * FROM posts NATURAL JOIN user NATURAL JOIN car NATURAL JOIN trip WHERE trip_depart_time between ? AND ? AND trip_price = ? AND trip_pickup_location = ? AND trip_dropoff_location = ?";
+    $sql = "SELECT * FROM posts NATURAL JOIN user NATURAL JOIN car NATURAL JOIN trip WHERE trip_depart_time between ? AND ? AND trip_price between ? AND ? AND trip_pickup_location = ? AND trip_dropoff_location = ?";
     $result = DB::select($sql, $data);
     return $result;
   }
@@ -64,13 +64,13 @@ class Post
   }
 
   public static function getAllDetailByConditionSortASC($data){
-    $sql = "SELECT * FROM posts NATURAL JOIN user NATURAL JOIN car NATURAL JOIN trip WHERE trip_depart_time between ? AND ? AND trip_price = ? AND trip_pickup_location = ? AND trip_dropoff_location = ? ORDER BY ? ASC";
+    $sql = "SELECT * FROM posts NATURAL JOIN user NATURAL JOIN car NATURAL JOIN trip WHERE trip_depart_time between ? AND ? AND trip_price between ? AND ? AND trip_pickup_location = ? AND trip_dropoff_location = ? ORDER BY ? ASC";
     $result = DB::select($sql, $data);
     return $result;
   }
 
   public static function getAllDetailByConditionSortDESC($data){
-    $sql = "SELECT * FROM posts NATURAL JOIN user NATURAL JOIN car NATURAL JOIN trip WHERE trip_depart_time between ? AND ? AND trip_price = ? AND trip_pickup_location = ? AND trip_dropoff_location = ? ORDER BY ? ASC";
+    $sql = "SELECT * FROM posts NATURAL JOIN user NATURAL JOIN car NATURAL JOIN trip WHERE trip_depart_time between ? AND ? AND trip_price between ? AND ? AND trip_pickup_location = ? AND trip_dropoff_location = ? ORDER BY ? DESC";
     $result = DB::select($sql, $data);
     return $result;
   }

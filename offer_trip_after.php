@@ -101,7 +101,7 @@
         ?>
       </tbody>
     </table>
-    <h3 class="countdown">You will be redirected in 5 secs...</h3>
+    <h3 class="countdown">You will be redirected to view all trips in 5 secs...</h3>
   </div>
 </body>
 </html>
@@ -110,10 +110,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-  var counter = 4;
+  var counter = 5;
+  var countdown_msg = "You will be redirected to view all trips in 5 secs...";
+  $(".countdown").html(countdown_msg);
   setInterval(function(){
-    $(".countdown").html("You will be redirected in " + counter + " secs...");
     counter--;
+    $(".countdown").html("You will be redirected to view all trips in "+counter+" secs...");
   }, 1000);
   setTimeout(function() {
     window.location.href = 'search_trip_result.php?view_all=on';
