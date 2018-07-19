@@ -6,7 +6,7 @@ $rating = $_POST['rating'];
 
 $result = Rating::insert($user_id, $rating);
 if($result > 0){
-  header("Location: ../rate_user.php");
+  header("Location: ../rate_user.php?msg=thankyou");
 }
 
 ?>

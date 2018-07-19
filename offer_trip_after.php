@@ -101,7 +101,7 @@
         ?>
       </tbody>
     </table>
-    <h3 class="countdown">You will be redirected to view all trips in 5 secs...</h3>
+    <h3 class="countdown"></h3>
   </div>
 </body>
 </html>

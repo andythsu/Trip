@@ -62,7 +62,7 @@
     </div>
     <div class="form-group">
       <label for="">Select pick-up time</label>
-      <input class="form-control" type="datetime-local" name="pickup_time" max="9999-12-31T23:59">
+      <input class="form-control" type="datetime-local" name="pickup_time" max="9999-12-31T23:59" required>
     </div>
     <!-- drop off location -->
     <div class="form-group">

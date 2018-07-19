@@ -20,6 +20,15 @@
   require_once('lib/util.php');
   ?>
   <div class="container">
+    <?php
+    if(isset($_GET) && array_key_exists("msg", $_GET)){
+      if($_GET['msg'] == 'thankyou'){
+        ?>
+        <div class="alert alert-success">Thank you for submitting your rating.</div>
+        <?php
+      }
+    }
+    ?>
     <form method = "POST" action = "daemon/rate_user.php">
       <!-- banner area -->
       <div class="alert alert-success" style="display: none"></div>
@@ -169,3 +178,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+var banner = $(".alert-success");
+if(banner.is(":visible")){
+  banner.delay(1500).fadeOut();
+}
+</script>
