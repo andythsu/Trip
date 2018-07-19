@@ -38,8 +38,8 @@
         </p>
       </button>
       <button class="btn btn-info custom_btn" onclick="window.location='my_trip.php'">
-        <p class="custom_text">
-          View offered trips
+        <p class="" style="font-size: 20px;">
+          View my offered trips
         </p>
       </button>
       <br>
