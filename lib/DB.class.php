@@ -44,6 +44,8 @@ class DB
       $stmt = self::$connection->prepare($sql);
       if($stmt->execute()){
         return $stmt;
+      }else{
+        return $stmt->errorInfo();
       }
     } catch (Exception $e) {
       die($e->getMessage());
