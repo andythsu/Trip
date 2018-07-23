@@ -21,7 +21,7 @@
 
 <body>
   <div class="text-center">
-    <img class="mb-4" src="img/trip_logo.png" alt="" width="20%" height="50%">
+    <img class="mb-4" src="img/trip_logo.png" alt="" width="35%" height="50%">
   </div>
   <div class="text-center">
     <form class="form-signin" action="detail_confirmation.php" method="post">
