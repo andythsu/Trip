@@ -92,7 +92,7 @@ class Post
   }
 
   public static function getByUserID($id){
-    $sql = "SELECT * FROM posts NATURAL JOIN car NATURAL JOIN user NATURAL JOIN trip WHERE user.user_id = ?";
+    $sql = "SELECT * FROM posts NATURAL JOIN car NATURAL JOIN user NATURAL JOIN trip WHERE user.user_id = ? ORDER BY trip.trip_depart_time ASC";
     $data = array($id);
     $result = DB::select($sql, $data);
     return $result;
