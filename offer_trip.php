@@ -14,7 +14,7 @@
 </head>
 <body>
   <div class="text-center">
-    <img src="img/index_logo.png" alt="" style="padding-top: 40px;" width="50%">
+    <img class="mb-4" src="img/trip_logo.png" alt="" style="padding-top: 40px" width="20%" height="50%">
   </div>
   <form class="container" action="daemon/offer_trip.php" method="POST">
     <h1>Offer A Trip</h1>

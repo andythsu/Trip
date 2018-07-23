@@ -22,7 +22,7 @@
 
 <body style="display: block">
   <div class="text-center">
-    <img class="" src="img/index_logo.png" alt="" width="50%" height="50%">
+    <img class="mb-4" src="img/trip_logo.png" alt="" width="20%" height="50%">
   </div>
   <div class="text-center">
     <form class="form-signin">
